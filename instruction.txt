@@ -1,0 +1,16 @@
+$docker container run --rm -v $(pwd):/src \
+-w /src composer:1.7.3 \
+composer create-project --prefer-dist laravel/laravel blog
+
+$docker container run --rm -v $(pwd):/src -w /src composer:1.7.3 ./vendor/bin/phpunit
+
+### Unit test
+
+# Create services => UserServiceTest
+$docker container run --rm -v $(pwd)/hello:/src -w /src -p 8000:8000 composer:1.7.3 php artisan make:test user/UserServiceTest --unit
+
+# Create User repository
+
+
+# Create User model
+$docker container run --rm -v $(pwd)/hello:/src -w /src composer:1.7.3 php artisan make:model Models/User
